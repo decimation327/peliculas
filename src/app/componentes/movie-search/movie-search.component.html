@@ -1,0 +1,27 @@
+
+
+<div class="text">
+  <div class="container">
+    <h1>Peliculas</h1>
+    <p>Busca tu pelicula favorita y ten informacion de ella</p> <br>
+    <div class="search-container">
+      <input class="search-input" type="text" [(ngModel)]="searchQuery" placeholder="Ingrese el título de la película">
+      <button class="search-button" (click)="searchMovies()">Buscar</button>
+    </div>
+  
+    <div *ngIf="movies">
+      <h2>Resultados de búsqueda</h2>
+      <ul class="movie-list">
+        <li *ngFor="let movie of movies" class="movie-card">
+          <h3>{{ movie.Title }}</h3>
+          <img [src]="movie.Poster" alt="{{ movie.Title }}">
+          <p>Año: {{ movie.Year }}</p>
+          <button (click)="getMovieDetails(movie.imdbID)">Ver Director</button>
+          <div *ngIf="movie.detailsVisible" class="director-details">
+            <p>Director: {{ movie.Director }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
